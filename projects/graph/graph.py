@@ -87,12 +87,6 @@ class Graph:
 
         if s.size() > 0:
             return recurse(s, visited_path)
-        # if (starting_vertex not in visited_path):
-        #     print(starting_vertex)
-        #     for items in self.vertices[starting_vertex]:
-        #         visited_path.add(items)
-
-        #     return self.dft_recursive(starting_vertex, visited_path)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
