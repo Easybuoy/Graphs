@@ -6,17 +6,7 @@ def earliest_ancestor(ancestors, starting_node):
     graph = Graph()
     for i in range(12):
         graph.add_vertex(i)
-    # graph.add_vertex(1)
-    # graph.add_vertex(2)
-    # graph.add_vertex(3)
-    # graph.add_vertex(4)
-    # graph.add_vertex(5)
-    # graph.add_vertex(6)
-    # graph.add_vertex(7)
-    # graph.add_vertex(8)
-    # graph.add_vertex(9)
-    # graph.add_vertex(10)
-    # graph.add_vertex(11)
+        
     for elem in ancestors:
         graph.add_edge(elem[1], elem[0])
     s = Stack()
