@@ -63,30 +63,35 @@ class Graph:
                 for items in self.vertices[depoped]:
                     s.push(items)
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=set()):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         This should be done using recursion.
         """
 
-        s = Stack()
-        s.push(starting_vertex)
-        visited_path = set()
+        # s = Stack()
+        # s.push(starting_vertex)
+        # visited_path = set()
 
-        def recurse(s, visited_path):
-            depoped = s.pop()
-            if depoped not in visited_path:
-                print(depoped)
-                visited_path.add(depoped)
+        # def recurse(s, visited_path):
+        #     depoped = s.pop()
+        #     if depoped not in visited_path:
+        #         print(depoped)
+        #         visited_path.add(depoped)
 
-                if depoped != None:
-                    for items in self.vertices[depoped]:
-                        s.push(items)
-            return recurse(s, visited_path)
+        #         if depoped != None:
+        #             for items in self.vertices[depoped]:
+        #                 s.push(items)
+        #     return recurse(s, visited_path)
 
-        if s.size() > 0:
-            return recurse(s, visited_path)
+        # if s.size() > 0:
+        #     return recurse(s, visited_path)
+        print(starting_vertex)
+        visited.add(starting_vertex)
+        for vertice in self.vertices[starting_vertex]:
+            if vertice not in visited:
+                self.dft_recursive(vertice, visited)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
