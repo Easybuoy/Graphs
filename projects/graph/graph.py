@@ -125,12 +125,24 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        if starting_vertex == destination_vertex:
-            return [starting_vertex]
-        for vertice in self.vertices[starting_vertex]:
-            if vertice not in visited:
-                if self.dfs(vertice, destination_vertex, visited):
-                    return [starting_vertex]
+        stack = Stack()
+
+        visited = set()
+        stack.push([starting_vertex])
+        while stack.size() > 0:
+            path = stack.pop()
+            vert = path[-1]
+            if vert not in visited:
+                if vert == destination_vertex:
+                    return path
+
+                visited.add(vert)
+            for next_vert in self.vertices[vert]:
+                new_path = list(path)
+                new_path.append(next_vert)
+                stack.push(new_path)
+
+        return None
 
 
 if __name__ == '__main__':
@@ -199,7 +211,7 @@ graph.dft_recursive(1)
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-print(graph.bfs(1, 6), 'aa')
+print(graph.bfs(1, 6))
 
 '''
     Valid DFS paths:
