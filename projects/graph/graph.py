@@ -5,6 +5,7 @@ from util import Stack, Queue  # These may come in handy
 import sys
 sys.setrecursionlimit(1000000)
 
+
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
 
@@ -99,15 +100,37 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        queue = Queue()
 
-    def dfs(self, starting_vertex, destination_vertex):
+        visited = set()
+        queue.enqueue([starting_vertex])
+        while queue.size() > 0:
+            path = queue.dequeue()
+            vert = path[-1]
+            if vert not in visited:
+                if vert == destination_vertex:
+                    return path
+
+                visited.add(vert)
+            for next_vert in self.vertices[vert]:
+                new_path = list(path)
+                new_path.append(next_vert)
+                queue.enqueue(new_path)
+
+        return None
+
+    def dfs(self, starting_vertex, destination_vertex, visited=set()):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        if starting_vertex == destination_vertex:
+            return [starting_vertex]
+        for vertice in self.vertices[starting_vertex]:
+            if vertice not in visited:
+                if self.dfs(vertice, destination_vertex, visited):
+                    return [starting_vertex]
 
 
 if __name__ == '__main__':
@@ -170,13 +193,13 @@ graph.bft(1)
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-print(graph.dft_recursive(1))
+graph.dft_recursive(1)
 
 '''
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-print(graph.bfs(1, 6))
+print(graph.bfs(1, 6), 'aa')
 
 '''
     Valid DFS paths:
