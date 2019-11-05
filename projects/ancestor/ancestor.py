@@ -27,16 +27,23 @@ def earliest_ancestor(ancestors, starting_node):
 
     while s.size() > 0:
         depoped = s.pop()
-        print(depoped, 'depp')
-        if depoped not in visited_path:
+
+
+        for items in graph.vertices[depoped]:
+            s.push(items)
+
+        if depoped not in visited_path and depoped != starting_node:
             print(depoped)
             visited_path.add(depoped)
 
-            for items in graph.vertices[depoped]:
-                s.push(items)
+
     print(visited_path)
-    if len(visited_path) <= 1:
+    if len(visited_path) < 1:
         return -1
+    elif len(visited_path) == 1:
+        for elem in visited_path:
+            return elem
+    # return list(visited_path)[0]
     return list(visited_path)[len(visited_path) - 1]
 
     # if len(graph.vertices[starting_node]) == 0:
@@ -65,4 +72,4 @@ def earliest_ancestor(ancestors, starting_node):
 
 
 print(earliest_ancestor([(1, 3), (2, 3), (3, 6), (5, 6),
-                         (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)], 3))
+                         (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)], 7))
