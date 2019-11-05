@@ -18,8 +18,6 @@ def earliest_ancestor(ancestors, starting_node):
     for elem in ancestors:
         graph.add_edge(elem[1], elem[0])
 
-    # print(graph.vertices)
-    # print(graph.vertices[starting_node])
     s = Stack()
 
     s.push(starting_node)
@@ -29,17 +27,14 @@ def earliest_ancestor(ancestors, starting_node):
         depoped = s.pop()
 
         print(graph.vertices[depoped])
-        # if len(graph.vertices[depoped]) == 1:
 
         for items in graph.vertices[depoped]:
             s.push(items)
 
-        
-
         if depoped not in visited_path and depoped != starting_node:
-            # print(depoped)
+            print(depoped)
             visited_path.add(depoped)
-
+            
 
     print(visited_path, 'v')
     if len(visited_path) < 1:
@@ -47,34 +42,8 @@ def earliest_ancestor(ancestors, starting_node):
     elif len(visited_path) == 1:
         for elem in visited_path:
             return elem
-   
-    # return list(visited_path)[0]
     return list(visited_path)[len(visited_path) - 1]
-
-    # if len(graph.vertices[starting_node]) == 0:
-    #     return -1
-    # while len(graph.vertices[starting_node]) > 0:
-    #     if (len(graph.vertices[starting_node]) == 1):
-    #         for item in graph.vertices[starting_node]:
-    #             return item
-    #     elif len(graph.vertices[starting_node]) > 1:
-
-    # for item in graph.vertices[starting_node]:
-    #     print(item)
-    # while len(graph.vertices[item]) > 0:
-    #     print(graph.vertices[item])
-    #     for item2 in graph.vertices[item]:
-    #         return item2
-    #     if len(graph.vertices[item])
-    #     print(graph.vertices[item])
-    # return -1
-
-    # print(graph.vertices[starting_node])
-
-    # for item in graph.vertices:
-    #     if item == starting_node:
-    #     print(item)
 
 
 print(earliest_ancestor([(1, 3), (2, 3), (3, 6), (5, 6),
-                         (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)], 8))
+                         (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)], 7))
