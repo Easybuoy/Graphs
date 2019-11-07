@@ -6,14 +6,14 @@ def earliest_ancestor(ancestors, starting_node):
     graph = Graph()
     for i in range(12):
         graph.add_vertex(i)
-        
+
     for elem in ancestors:
         graph.add_edge(elem[1], elem[0])
     s = Stack()
 
     s.push(starting_node)
-    visited_path = [] 
-   
+    visited_path = []
+
     while s.size() > 0:
         depoped = s.pop()
         for items in sorted(graph.vertices[depoped]):
