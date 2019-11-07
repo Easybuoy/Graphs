@@ -1,4 +1,4 @@
-
+from util import Queue
 
 class User:
     def __init__(self, name):
@@ -61,6 +61,20 @@ class SocialGraph:
         """
         visited = {}  # Note that this is a dictionary, not a set
         # !!!! IMPLEMENT ME
+        queue = Queue()
+
+        queue.enqueue([userID])
+
+        while queue.size() > 0:
+            path = queue.dequeue()
+            new_user_id = path[-1]
+
+            if new_user_id not in visited:
+                visited[new_user_id] = path
+
+                for friend_id in self.friendships[new_user_id]:
+                    if friend_id not in visited:
+                        
         return visited
 
 
